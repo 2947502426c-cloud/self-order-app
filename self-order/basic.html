@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container bg-secondary vh-100 d-flex align-items-center justify-content-center">
+		<div class="row w-100 h-25">
+			<div class="col bg-primary"> 
+				<div class="">Ajax Value:</div>
+				<div class="" id="ajaxValue"></div>
+			</div>
+			<div class="col bg-info d-flex justify-content-center flex-column">
+				<form autocomplete="off">
+					<input class="form-control" name="name" placeholder="Name" required>
+					<input class="form-control" name="pass" placeholder="Pass" type="password" required>
+				
+					<button class="btn bg-warning form-control" type="reset">reset</button>
+				</form>
+					<button class="btn bg-danger" onclick="checkForm()">ajax</button>
+			</div>
+		</div>
+	</div>
+<script src="js/jquery-3.6.0.js"></script>
+<script>
+function checkForm(){
+	    
+	    let form = $("form")[0];
+    		
+		if(form.checkValidity()===true){
+		    
+		        let data = new FormData(form);
+				ajax(data);
+		}else{
+				alert("資料不齊全, 請重試");
+	}
+}
+function ajax(data){
+	let url = "basic.php";
+	    
+	    fetch(url, {   // https://developer.mozilla.org/zh-TW/docs/Web/API/Fetch_API/Using_Fetch
+			cache: "no-cache",
+			method: "POST",
+			mode: "cors",
+			headers:{},     // multipart/form-data
+			body: data
+		})
+		.then(response => {     
+		    
+		    if(response.ok){
+		        
+		           return response.json();      //response.json()
+		    }else{
+		           throw new Error("錯誤");
+		    }
+		})
+		.then(finalData => ajaxSuccess(finalData))
+		.catch(err => console.log(err.message));
+}
+function ajaxSuccess(res){
+
+	$("#ajaxValue").text(res);
+}
+
+</script>
+</body>
+</html>
