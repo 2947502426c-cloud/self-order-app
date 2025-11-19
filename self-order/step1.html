@@ -1,128 +1,143 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="css/myStyle.css">
-<title>好好食漢堡包 - 入口</title>
+<title>入口</title>
 <link rel="icon" href="icon.png">
+<style>
+</style>
 </head>
 <body>
-    <!-- 導航欄 -->
-    <div class="navbar">
-        <div class="navbar-brand">
-            <img src="icon.png" alt="logo">
-            <span class="navbar-text">好好食漢堡包</span>
+	<nav class="navbar navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand p-0 m-0">
+                <img src="icon.png" alt="" width="44" height="44" class="d-inline-block">
+            </a>
+            
+            <span class="navbar-text text-white">
+                好好食漢堡包
+            </span>
+			
+			<div></div>
         </div>
-    </div>
+    </nav>
+	
+	<fieldset class="mx-2 my-3 fs-4">
+		<legend class="alert text-center">入口處</legend>
+		
+		<form>
+			<div class="row g-0 my-5">
+				<label for="tableNo" class="col-form-label col-4">選擇枱號</label>
+				<select name="tableNo" id="tableNo" onchange="showSelect(this)" class="form-select col" required="">
+					<option value="" hidden="">請選擇</option>
+					<option value="T1">T1</option>
+					<option value="T2">T2</option>
+					<option value="T3">T3</option>
+					<option value="T4">T4</option>
+					<option value="T5">T5</option>
+					<option value="T6">T6</option>
+				</select>
+				<span class="col-form-label col text-center"></span>
+			</div>
+			
+			<div class="row g-0 my-5">
+				<label for="clientNo" class="col-form-label col-4">顧客人數</label>
+				<select name="clientNo" id="clientNo" onchange="showSelect(this)" class="form-select col" required="">
+					<option value="" hidden="">請選擇</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+				<span class="col-form-label col text-center"></span>
+			</div>
 
-    <!-- 表單容器 -->
-    <div class="fieldset-container">
-        <div class="legend">請輸入用餐信息</div>
-        <div class="form-group">
-            <label class="form-label">選擇枱號</label>
-            <select id="tableNo" class="form-select" required="">
-                <option value="" hidden="">請選擇</option>
-                <option value="T1">T1</option>
-                <option value="T2">T2</option>
-                <option value="T3">T3</option>
-                <option value="T4">T4</option>
-                <option value="T5">T5</option>
-                <option value="T6">T6</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-label">顧客人數</label>
-            <select id="clientNo" class="form-select" required="">
-                <option value="" hidden="">請選擇</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-label">用膳時間</label>
-            <select id="timeLength" class="form-select" required="">
-                <option value="" hidden="">請選擇</option>
-                <option value="60">60分鐘</option>
-                <option value="90">90分鐘</option>
-                <option value="120">120分鐘</option>
-                <option value="180">180分鐘</option>
-            </select>
-        </div>
-        <button class="btn-submit" onclick="submitForm()">確認提交</button>
-    </div>
+			<div class="row g-0 my-5">
+				<label for="timeLength" class="col-form-label col-4">用膳時間</label>
+				<select name="timeLength" id="timeLength" onchange="showSelect(this)" class="form-select col" required="">
+					<option value="" hidden="">請選擇</option>
+					<option value="60">60</option>
+					<option value="90">90</option>
+					<option value="120">120</option>
+					<option value="180">180</option>
+				</select>
+				<span class="col-form-label col text-center"></span>
+			</div>
+		</form>
+		
+		<div class="d-grid gap-2 col-8 mx-auto">
+			<button onclick="OK()" class="btn btn-primary btn-lg py-3">OK</button>
+		</div>
+	</fieldset>
 
-    <!-- 只加載jQuery（用於後續點餐頁，二維碼已不依賴其他庫） -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // 表單提交處理
-        function submitForm() {
-            const tableNo = document.getElementById("tableNo").value;
-            const clientNo = document.getElementById("clientNo").value;
-            const timeLength = document.getElementById("timeLength").value;
+<script src="js/jquery-3.6.0.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="js/qrcode.js"></script>
+<script>
+	function showSelect(el){
+		$(el).next("span").text(el.value);
+	}
+	
+	function OK(){
+	    if(confirm("確認?")) checkForm();
+	}
+	
+	function checkForm(){
 
-            if (!tableNo || !clientNo || !timeLength) {
-                alert("資料不齊全，請重試！");
-                return;
-            }
+	    let form = $("form")[0];
+    		
+		if(form.checkValidity()===true){
+		    
+		        let data = new FormData(form);
+				sendToCloud(data);
+		}else{
+				alert("資料不齊全, 請重試");
+		}
+	}
+	
+	function sendToCloud(data){
+	    
+	    fetch("step2.php", {   // https://developer.mozilla.org/zh-TW/docs/Web/API/Fetch_API/Using_Fetch
+			cache: "no-cache",
+			method: "POST",
+			mode: "cors",
+			headers:{},     // multipart/form-data
+			body: data
+		})
+		.then(response => {
+		    
+		    if(response.ok){
+		        
+		           return response.text();      //response.json()
+		    }else{
+		           throw new Error("錯誤");
+		    }
+		})
+		.then(finalData => printTicket(finalData))
+		.catch(err => console.log(err.message));
+	}
+	
+	function printTicket(res){
 
-            if (!confirm("確認提交用餐信息？")) {
-                return;
-            }
-
-            const formData = new FormData();
-            formData.append("tableNo", tableNo);
-            formData.append("clientNo", clientNo);
-            formData.append("timeLength", timeLength);
-
-            fetch("step2.php", {
-                method: "POST",
-                body: formData,
-                cache: "no-cache"
-            })
-            .then(response => {
-                if (!response.ok) throw new Error("網絡請求失敗");
-                return response.text();
-            })
-            .then(url => {
-                // 直接生成二維碼圖片（用公開接口，無需依賴）
-                renderQRCode(url, tableNo, timeLength);
-            })
-            .catch(err => {
-                alert("提交失敗：" + err.message);
+	    let printArea = $("fieldset");
+	        printArea.empty();
+	        printArea.html(`<a href="${res}">Step 3</a><hr>`);
+	        
+	    let qrCode = new QRCode(printArea[0], {     // https://davidshimjs.github.io/qrcodejs/
+                text: res,
+                width: 200,
+                height: 200,
+                colorDark : "#000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
             });
-        }
-
-        // 核心修復：用公開二維碼接口生成圖片，完全不依賴QRCode庫
-        function renderQRCode(url, tableNo, timeLength) {
-            // 用公開接口將URL轉換為二維碼圖片（安全穩定）
-            const qrcodeImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(url.trim())}`;
-
-            // 替換頁面內容為二維碼
-            document.body.innerHTML = `
-                <div class="qrcode-container">
-                    <h2 class="qrcode-title">請掃碼進入點餐頁</h2>
-                    <div class="qrcode-box">
-                        <!-- 直接顯示二維碼圖片，不用JS生成 -->
-                        <img src="${qrcodeImageUrl}" alt="點餐二維碼" style="width:220px; height:220px;">
-                    </div>
-                    <div class="qrcode-info">
-                        枱號：${tableNo}<br>
-                        用膳時間：${timeLength}分鐘
-                    </div>
-                    <button class="btn-print" onclick="window.print()">列印憑證</button>
-                    <div style="margin-top:10px; font-size:0.9rem; color:#666;">
-                        無法掃碼？直接打開：<br>
-                        <a href="${url}" target="_blank" style="word-break:break-all;">${url}</a>
-                    </div>
-                </div>
-            `;
-        }
-    </script>
+                window.print();
+	}
+</script>
 
 </body></html>
-
 
 
