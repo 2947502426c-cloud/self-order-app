@@ -24,10 +24,11 @@ try {
     $stmt = $con->prepare($sql);
     $stmt->execute([$tableNo, $clientNo, $timeStart, $timeEnd, $token]);
     // 生成正確的URL（確保包含self-order文件夾）
-    echo "http://localhost/self-order/step3.php?tk=" . $token;
+    echo "http://self-order-app-gray.vercel.app/step3.php?tk=" . $token;
 } catch (PDOException $e) {
     echo "錯誤：" . $e->getMessage();
 }
 
 $con = null;
+
 ?>
